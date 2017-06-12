@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,20 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Gamology.UserInterface.Utils.Helpers;
-using Microsoft.Practices.Unity;
 
-namespace Gamology.UserInterface
+namespace Gamology.UserInterface.UserControls.Canvas
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CanvasView.xaml
     /// </summary>
-    public partial class GameEditorMainWindow : Window
+    public partial class CanvasView : UserControl
     {
-        public GameEditorMainWindow()
+        public CanvasView()
         {
             InitializeComponent();
-            this.DataContext = ContainerHelper.Container.Resolve<GameEditorMainWindowViewModel>();
         }
     }
 }

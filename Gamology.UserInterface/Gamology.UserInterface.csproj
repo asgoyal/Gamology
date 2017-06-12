@@ -78,8 +78,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameEditorMainWindowViewModel.cs" />
     <Compile Include="Services\DefaultCommandHandler.cs" />
     <Compile Include="Services\ICommandHandler.cs" />
+    <Compile Include="UserControls\Canvas\CanvasView.xaml.cs">
+      <DependentUpon>CanvasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Canvas\CanvasViewModel.cs" />
+    <Compile Include="UserControls\Tool\ToolView.xaml.cs">
+      <DependentUpon>ToolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Tool\ToolViewModel.cs" />
     <Compile Include="Utils\BindableBase.cs" />
     <Compile Include="Utils\Commands\GeneralizedRelayCommand.cs" />
     <Compile Include="Utils\Commands\InterpretingCommand.cs" />
@@ -102,6 +111,14 @@
       <DependentUpon>GameEditorMainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\Canvas\CanvasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tool\ToolView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -128,6 +145,12 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gamology.DataModel\Gamology.DataModel.csproj">
+      <Project>{2bcee0c6-3bc4-415d-846e-f7e0dd33192a}</Project>
+      <Name>Gamology.DataModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

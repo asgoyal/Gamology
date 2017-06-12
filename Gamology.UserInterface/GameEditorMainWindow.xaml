@@ -4,9 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gamology.UserInterface"
+        xmlns:tool="clr-namespace:Gamology.UserInterface.UserControls.Tool"
+        xmlns:canvas="clr-namespace:Gamology.UserInterface.UserControls.Canvas"
         mc:Ignorable="d"
         Title="Gamology Game Editor Window" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type tool:ToolViewModel}">
+            <tool:ToolView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type canvas:CanvasViewModel}">
+            <canvas:CanvasView />
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="ToolView"
+              Grid.Column="0">
+            <ContentControl Content="{Binding ToolRegion}" />
+        </Grid>
+        <Grid x:Name="WorkspaceView"
+              Grid.Column="1">
+            <ContentControl Content="{Binding WorkspaceRegion}" />
+        </Grid>
     </Grid>
 </Window>
