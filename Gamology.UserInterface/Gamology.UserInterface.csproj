@@ -79,12 +79,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GameEditorMainWindowViewModel.cs" />
+    <Compile Include="Services\AbstractUserControlService.cs" />
     <Compile Include="Services\DefaultCommandHandler.cs" />
     <Compile Include="Services\ICommandHandler.cs" />
+    <Compile Include="Services\IUserControlService.cs" />
+    <Compile Include="Services\ToolService.cs" />
     <Compile Include="UserControls\Canvas\CanvasView.xaml.cs">
       <DependentUpon>CanvasView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Canvas\CanvasViewModel.cs" />
+    <Compile Include="UserControls\Sprite\SpritePropertiesView.xaml.cs">
+      <DependentUpon>SpritePropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Sprite\SpritePropertiesViewModel.cs" />
     <Compile Include="UserControls\Tool\ToolView.xaml.cs">
       <DependentUpon>ToolView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +119,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\Canvas\CanvasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Sprite\SpritePropertiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

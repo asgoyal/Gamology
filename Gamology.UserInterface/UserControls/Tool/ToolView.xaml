@@ -4,9 +4,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Gamology.UserInterface.UserControls.Tool"
+             xmlns:conv="clr-namespace:Gamology.UserInterface.Utils.Converters"
+             xmlns:const="clr-namespace:Gamology.UserInterface.Utils.Constants"
+             xmlns:sprite="clr-namespace:Gamology.UserInterface.UserControls.Sprite"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type sprite:SpritePropertiesViewModel}">
+            <sprite:SpritePropertiesView />
+        </DataTemplate>
+        <conv:CommandParamterConverter x:Key="CommandParameterConverter" />
+    </UserControl.Resources>
     <Grid>
-        <TextBlock>Hello Tools</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="ToolsGrid">
+            <Button Content="Add New Sprite"
+                    Command="{Binding Command}"
+                    Grid.Row="0" >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandParameterConverter}">
+                        <Binding Source="{x:Static const:CommandNames.AddNewSpriteCommand}" />
+                        <Binding Source="{x:Static const:ViewNames.SpritePropertiesView}" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+        </Grid>
+        <Grid x:Name="PropertiesGrid"
+              Grid.Row="1">
+            <ContentControl Content="{Binding LocalRegion}" />
+        </Grid>
     </Grid>
 </UserControl>

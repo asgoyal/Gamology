@@ -8,5 +8,6 @@ namespace Gamology.UserInterface.Utils.Constants
 {
     public static class CommandNames
     {
+        public const string AddNewSpriteCommand = nameof(AddNewSpriteCommand);
     }
 }

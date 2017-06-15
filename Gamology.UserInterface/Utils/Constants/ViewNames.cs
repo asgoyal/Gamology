@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Gamology.UserInterface.Utils.Constants
 {
-    class ViewNames
+    public static class ViewNames
     {
+        public const string SpritePropertiesView = nameof(SpritePropertiesView);
     }
 }
