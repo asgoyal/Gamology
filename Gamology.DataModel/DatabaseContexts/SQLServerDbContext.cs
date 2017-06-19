@@ -5,11 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gamology.DataModel.Models;
+using System.Data.Entity.Infrastructure.Annotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Gamology.DataModel.DatabaseContexts
 {
     public class SQLServerDbContext : DbContext
     {
+        public DbSet<Sprite> Sprites { get; set; }
+
         public SQLServerDbContext()
             : base("SQLServerDatabase")
         {
@@ -17,6 +21,13 @@ namespace Gamology.DataModel.DatabaseContexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder
+            .Entity<Sprite>()
+            .Property(s => s.Name)
+            .HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute()));
+
+            modelBuilder.Types().Configure(c => c.Ignore("IsDirty"));
+
             base.OnModelCreating(modelBuilder);
         }
 

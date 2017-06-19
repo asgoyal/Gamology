@@ -1,12 +1,161 @@
-﻿<UserControl x:Class="Gamology.UserInterface.UserControls.Sprite.SpritePropertiesView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Gamology.UserInterface.UserControls.Sprite"
+             xmlns:conv="clr-namespace:Gamology.UserInterface.Utils.Converters"
+             xmlns:const="clr-namespace:Gamology.UserInterface.Utils.Constants"
+             xmlns:Models="clr-namespace:Gamology.DataModel.Models;assembly=Gamology.DataModel" x:Class="Gamology.UserInterface.UserControls.Sprite.SpritePropertiesView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock>Sprite Properties View</TextBlock>
+    <UserControl.Resources>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter" />
+        <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter" 
+                                                    Negate="True" />
+        <conv:CommandParamterConverter x:Key="CommandParameterConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="SpritePropertiesWiz">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="SpritePropertiesControl" 
+              HorizontalAlignment="Left" 
+              Margin="10,10,0,0" 
+              VerticalAlignment="Top" 
+              Height="156" 
+              Width="280"
+              Grid.Row="0"
+              DataContext="{Binding Sprite}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Name:" 
+                   Grid.Column="0" 
+                   HorizontalAlignment="Left" 
+                   Margin="3" 
+                   Grid.Row="0" 
+                   VerticalAlignment="Center"/>
+            <TextBox x:Name="nameTextBox" 
+                     Grid.Column="1" 
+                     HorizontalAlignment="Left"                      
+                     Height="23" 
+                     Margin="3" 
+                     Grid.Row="0" 
+                     Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                     VerticalAlignment="Center" 
+                     Width="120"/>
+            <Label Content="Position X:" 
+                   Grid.Column="0" 
+                   HorizontalAlignment="Left" 
+                   Margin="3" 
+                   Grid.Row="1" 
+                   VerticalAlignment="Center"/>
+            <TextBox x:Name="positionXTextBox" 
+                     Grid.Column="1" 
+                     HorizontalAlignment="Left" 
+                     Height="23" 
+                     Margin="3" 
+                     Grid.Row="1" 
+                     Text="{Binding PositionX, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                     VerticalAlignment="Center" 
+                     Width="120"/>
+            <Label Content="Position Y:" 
+                   Grid.Column="0" 
+                   HorizontalAlignment="Left" 
+                   Margin="3" 
+                   Grid.Row="2" 
+                   VerticalAlignment="Center"/>
+            <TextBox x:Name="positionYTextBox" 
+                     Grid.Column="1" 
+                     HorizontalAlignment="Left" 
+                     Height="23" 
+                     Margin="3" 
+                     Grid.Row="2" 
+                     Text="{Binding PositionY, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                     VerticalAlignment="Center" 
+                     Width="120"/>
+            <Label Content="Texture Filename:" 
+                   Grid.Column="0" 
+                   HorizontalAlignment="Left" 
+                   Margin="3" 
+                   Grid.Row="3" 
+                   VerticalAlignment="Center"/>
+            <TextBox x:Name="textureFilenameTextBox" 
+                     Grid.Column="1" 
+                     HorizontalAlignment="Left" 
+                     Height="23" 
+                     Margin="3" 
+                     Grid.Row="3" 
+                     Text="{Binding TextureFilename, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                     VerticalAlignment="Center" 
+                     Width="120"/>
+            <Label Content="Is Solid:" 
+                   Grid.Column="0" 
+                   HorizontalAlignment="Left" 
+                   Margin="3" 
+                   Grid.Row="4" 
+                   VerticalAlignment="Center"/>
+            <CheckBox x:Name="isSolidCheckBox" 
+                      Content="" 
+                      Grid.Column="1" 
+                      HorizontalAlignment="Left" 
+                      IsChecked="{Binding IsSolid, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                      Margin="3" 
+                      Grid.Row="4" 
+                      VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button Content="Save" Name="SpriteSaveButton"
+                    Command="{Binding Command}"
+                    Visibility="{Binding EditMode, Converter={StaticResource VisConverter}}"
+                    HorizontalAlignment="Left"
+                    Margin="25,5,0,0"
+                    VerticalAlignment="Top"
+                    Width="75" >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandParameterConverter}">
+                        <Binding Source="{x:Static const:CommandNames.SaveCommand}" />
+                        <Binding Source="" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="Add" Name="SpriteAddButton"
+                    Command="{Binding Command}"
+                    Visibility="{Binding EditMode, Converter={StaticResource NegVisConverter}}"
+                    HorizontalAlignment="Left"
+                    Margin="25,5,0,0"
+                    VerticalAlignment="Top"
+                    Width="75" >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandParameterConverter}">
+                        <Binding Source="{x:Static const:CommandNames.SaveCommand}" />
+                        <Binding Source="" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="Cancel"
+                    Command="{Binding Command}"
+                    HorizontalAlignment="Left"
+                    Margin="150,5,0,0"
+                    VerticalAlignment="Top"
+                    Width="75" >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandParameterConverter}">
+                        <Binding Source="{x:Static const:CommandNames.SpritePropertiesCancelCommand}" />
+                        <Binding Source="{x:Static const:ViewNames.SpritePropertiesView}" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

@@ -27,7 +27,7 @@
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource CommandParameterConverter}">
                         <Binding Source="{x:Static const:CommandNames.AddNewSpriteCommand}" />
-                        <Binding Source="{x:Static const:ViewNames.SpritePropertiesView}" />
+                        <Binding Source="" />
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>

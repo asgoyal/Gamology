@@ -7,7 +7,7 @@
         xmlns:tool="clr-namespace:Gamology.UserInterface.UserControls.Tool"
         xmlns:canvas="clr-namespace:Gamology.UserInterface.UserControls.Canvas"
         mc:Ignorable="d"
-        Title="Gamology Game Editor Window" Height="350" Width="525">
+        Title="Gamology Game Editor Window" Height="350" Width="525" WindowState="Maximized">
     <Window.Resources>
         <DataTemplate DataType="{x:Type tool:ToolViewModel}">
             <tool:ToolView />
