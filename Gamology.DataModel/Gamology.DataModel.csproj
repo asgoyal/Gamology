@@ -51,9 +51,12 @@
   <ItemGroup>
     <Compile Include="DatabaseContexts\SQLServerDbContext.cs" />
     <Compile Include="Models\IModificationHistory.cs" />
+    <Compile Include="Models\Sprite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseConnectedRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\Sprite\ISpriteRepository.cs" />
+    <Compile Include="Repositories\Sprite\SpriteRepository.cs" />
     <Compile Include="Repositories\SQLServerEntityRepository.cs" />
   </ItemGroup>
   <ItemGroup>

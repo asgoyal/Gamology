@@ -18,7 +18,7 @@ namespace Gamology.UserInterface.Utils
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         private ICommandHandler _commandHandler;
-        protected ICommandHandler CommandHandler => _commandHandler;
+        public ICommandHandler CommandHandler => _commandHandler;
 
         public BindableBase(ICommandHandler commandHandler)
         {

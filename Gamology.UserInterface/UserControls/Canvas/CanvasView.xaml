@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:Gamology.UserInterface.UserControls.Canvas"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock>Hello Canvas!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</TextBlock>
-    </Grid>
+    <local:EditableCanvas />
+
 </UserControl>
